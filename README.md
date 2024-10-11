@@ -1,16 +1,25 @@
-# Penjelasan :
-send_message: Mengirim pesan menggunakan API Discord, kemudian mengembalikan ID pesan yang dikirim agar bisa dihapus nantinya.
-delete_message: Menghapus pesan menggunakan API Discord berdasarkan ID pesan yang diterima dari fungsi send_message.
+# Discord Auto Message Bot
 
-Alur Pengiriman dan Penghapusan:
-Kirim pesan dari file messages.txt.
-Tunggu selama 60 detik.
-Hapus pesan yang sudah dikirim.
-Tunggu lagi selama 30 detik sebelum mengirim pesan berikutnya.
-Ulangi hingga semua pesan di file habis, lalu ulangi dari pesan pertama.
+This is a simple bot for sending and deleting messages in a Discord channel at regular intervals. It sends messages from a `.txt` file and manages their deletion after a specified period. The process repeats in a loop once all messages have been sent.
 
-# Cara Kerja:
-Pesan dikirim dari file messages.txt, satu per satu.
-Setelah setiap pesan dikirim, bot menunggu selama 60 detik sebelum menghapus pesan tersebut.
-Setelah pesan dihapus, bot menunggu lagi selama 30 detik sebelum mengirim pesan berikutnya.
-Proses ini akan terus berulang, kembali ke pesan pertama setelah semua pesan habis.
+## Features
+- **Automatic message sending**: Sends messages sequentially from a `.txt` file.
+- **Message deletion**: Deletes the message after a delay.
+- **Configurable timing**: Sends and deletes messages with configurable delays.
+- **Endless loop**: Repeats the process once all messages are sent.
+
+## How it Works
+The bot reads messages from a `messages.txt` file. Each line in this file is treated as a separate message. The bot works in the following sequence:
+1. **Send a message**: The bot posts a message to a specified Discord channel.
+2. **Wait 60 seconds**: After sending the message, the bot waits for 60 seconds.
+3. **Delete the message**: The bot deletes the previously sent message from the channel.
+4. **Wait 30 seconds**: After deleting, the bot waits 30 seconds before proceeding to the next message.
+5. **Repeat**: Once all messages have been sent and deleted, the process starts over from the first message.
+
+## Setup Instructions
+
+### Prerequisites
+1. Install Python 3.x on your machine.
+2. Install required dependencies:
+   ```bash
+   pip install requests pyyaml
